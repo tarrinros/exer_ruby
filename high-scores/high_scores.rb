@@ -10,10 +10,10 @@ class HighScores
   end
 
   def personal_best
-    @scores.sort.last
+    @scores.max
   end
 
   def personal_top_three
-    @scores.sort { |a,b| b <=> a }.take(3)
+    @scores.max(3)
   end
 end
