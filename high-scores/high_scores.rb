@@ -14,6 +14,6 @@ class HighScores
   end
 
   def personal_top_three
-    @scores.sort.pop(3).reverse
+    @scores.sort { |a,b| b <=> a }.take(3)
   end
 end
