@@ -1,41 +1,38 @@
 class Triangle
   def initialize(sides)
     @sides = sides
-  end
-
-  def is_triangle?(sides)
-    min_sides = sides.min(2)
-
-    sides.count == 3 &&
-      sides.all? { |side| side > 0 } &&
-      sides.max <= min_sides.sum
+    @triangular_shape = is_triangle?(sides)
   end
 
   def equilateral?
-    if is_triangle?(@sides)
-      biggest_side = @sides.max
-
-      @sides.all? { |side| side == biggest_side }
+    if @triangular_shape
+      @sides.all? { |side| side == @sides.max }
     else
       return false
     end
   end
 
   def isosceles?
-    if is_triangle?(@sides)
-      equal_sides = @sides.select{ |side| @sides.count(side) > 1 }
+    if @triangular_shape
+      equal_sides = @sides.select { |side| @sides.count(side) > 1 }
 
       equal_sides.count >= 2 ? true : false
+    else
+     return false
+    end
+  end
+
+  def scalene?
+    if @triangular_shape
+      @sides.uniq.count == 3 ? true : false
     else
       return false
     end
   end
 
-  def scalene?
-    if is_triangle?(@sides)
-      @sides.uniq.count == 3 ? true : false
-    else
-      return false
-    end
+  private
+
+  def is_triangle?(sides)
+    sides.count == 3 && sides.all? { |side| side > 0 } && sides.max <= sides.min(2).sum
   end
 end
