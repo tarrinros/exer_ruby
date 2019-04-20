@@ -1,9 +1,6 @@
 class Triangle
   def initialize(sides)
     @sides = sides
-    @a_side = sides[0]
-    @b_side = sides[1]
-    @c_side = sides[2]
   end
 
   def is_triangle?(sides)
