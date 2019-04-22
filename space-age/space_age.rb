@@ -15,9 +15,9 @@ class SpaceAge
     @seconds = seconds
   end
 
-  PLANETS_YEARS.each_pair do |key, value|
-    define_method("on_#{key}") do
-      (@seconds / (value * EARTH_YEAR_IN_SECONDS)).round(2)
+  PLANETS_YEARS.each_pair do |planet_name, earth_years|
+    define_method("on_#{planet_name}") do
+      (@seconds / (earth_years * EARTH_YEAR_IN_SECONDS)).round(2)
     end
   end
 end
