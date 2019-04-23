@@ -4,27 +4,26 @@ class Triangle
   end
 
   def equilateral?
-    return false unless is_triangle?
+    return false unless valid?
 
     @sides.all? { |side| side == @sides.first }
   end
 
   def isosceles?
-    return false unless is_triangle?
-    equal_sides = @sides.select { |side| @sides.count(side) > 1 }
+    return false unless valid?
 
-    equal_sides.count >= 2 ? true : false
+    @sides.uniq.count <= 2
   end
 
   def scalene?
-    return false unless is_triangle?
+    return false unless valid?
 
-    @sides.uniq.count == 3 ? true : false
+    @sides.uniq.count == 3
   end
 
   private
 
-  def is_triangle?
+  def valid?
     @sides.count == 3 && @sides.all? { |side| side > 0 } && @sides.max <= @sides.min(2).sum
   end
 end
