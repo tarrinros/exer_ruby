@@ -12,7 +12,7 @@ class Triangle
   def isosceles?
     return false unless valid?
 
-    return true if equilateral?
+    # return true if equilateral?
 
     at_least_two_matching_sides?
   end
