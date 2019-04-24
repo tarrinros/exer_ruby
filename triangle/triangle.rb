@@ -12,7 +12,9 @@ class Triangle
   def isosceles?
     return false unless valid?
 
-    @sides.uniq.count <= 2
+    return true if equilateral?
+
+    at_least_two_matching_sides?
   end
 
   def scalene?
@@ -25,5 +27,9 @@ class Triangle
 
   def valid?
     @sides.count == 3 && @sides.all? { |side| side > 0 } && @sides.max <= @sides.min(2).sum
+  end
+
+  def at_least_two_matching_sides?
+    @sides.uniq.count <= 2
   end
 end
