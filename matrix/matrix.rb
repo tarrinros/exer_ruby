@@ -4,7 +4,7 @@ class Matrix
   end
 
   def rows
-    @matrix.split("\n").map { |row| row.split(' ').map(&:to_i) }
+    @matrix.each_line.map { |row| row.split.map(&:to_i) }
   end
 
   def columns
