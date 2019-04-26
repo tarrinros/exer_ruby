@@ -3,11 +3,9 @@ class Series
     @args = args
   end
 
-  def slices(i)
-    arr = Array.new
+  def slices(amount)
+    raise ArgumentError.new if @args.length < amount
 
-    @args.split(//).each_cons(i) { |cons| arr.push(cons) }
-
-    arr.map(&:flatten).map(&:join)
+    @args.split(//).each_cons(amount).map(&:join)
   end
 end
