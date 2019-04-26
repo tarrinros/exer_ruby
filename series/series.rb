@@ -4,10 +4,10 @@ class Series
   end
 
   def slices(i)
-    b = Array.new
+    arr = Array.new
 
-    @args.split(//).each_cons(i) { |arr| b << arr }
+    @args.split(//).each_cons(i) { |cons| arr.push(cons) }
 
-    b.map(&:flatten).map(&:join)
+    arr.map(&:flatten).map(&:join)
   end
 end
