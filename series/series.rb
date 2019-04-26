@@ -3,7 +3,11 @@ class Series
     @args = args
   end
 
-  def slices
+  def slices(i)
+    b = Array.new
 
+    @args.split(//).each_cons(i) { |arr| b << arr }
+
+    b.map(&:flatten).map(&:join)
   end
 end
