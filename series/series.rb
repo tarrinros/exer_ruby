@@ -1,11 +1,19 @@
 class Series
+  attr_reader :args
+
   def initialize(args)
     @args = args
   end
 
   def slices(amount)
-    raise ArgumentError.new if @args.length < amount
+    raise ArgumentError.new unless self.args.length >= amount
 
-    @args.split(//).each_cons(amount).map(&:join)
+    slice_consecutive(amount)
+  end
+
+  private
+
+  def slice_consecutive(amount)
+    self.args.chars.each_cons(amount).map(&:join)
   end
 end
