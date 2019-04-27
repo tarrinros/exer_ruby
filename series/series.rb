@@ -1,13 +1,14 @@
 class Series
-  attr_reader :args
+  attr_reader :digits_sequence
+  private :digits_sequence
 
-  def initialize(args)
-    @args = args
+  def initialize(digits_sequence)
+    @digits_sequence = digits_sequence
   end
 
-  def slices(amount)
-    raise ArgumentError.new unless self.args.length >= amount
+  def slices(elements_amount)
+    raise ArgumentError.new unless digits_sequence.length >= elements_amount
 
-    args.chars.each_cons(amount).map(&:join)
+    digits_sequence.chars.each_cons(elements_amount).map(&:join)
   end
 end
