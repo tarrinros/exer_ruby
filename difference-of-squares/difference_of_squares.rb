@@ -1,19 +1,24 @@
 class Squares
+  attr_reader :threshold
 
   def initialize(threshold)
     @threshold = threshold
   end
 
   def square_of_sum
-    bar = 0
-    1.upto(@threshold) { |a| bar += a }
-    bar ** 2
+    sum = 0
+
+    1.upto(threshold) { |i| sum += i }
+
+    sum ** 2
   end
 
   def sum_of_squares
-    foo = 0
-    1.upto(@threshold) { |a| foo += a ** 2 }
-    foo
+    sum = 0
+
+    1.upto(threshold) { |i| sum += i ** 2 }
+
+    sum
   end
 
   def difference
