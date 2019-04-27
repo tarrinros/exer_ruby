@@ -1,5 +1,6 @@
 class Squares
   attr_reader :threshold
+  private :threshold
 
   def initialize(threshold)
     @threshold = threshold
