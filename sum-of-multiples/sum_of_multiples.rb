@@ -1,7 +1,4 @@
 class SumOfMultiples
-  attr_reader :numbers
-  private :numbers
-
   def initialize(*numbers)
     @numbers = numbers
   end
@@ -15,4 +12,8 @@ class SumOfMultiples
 
     result.sum
   end
+
+  private
+
+  attr_reader :numbers
 end
