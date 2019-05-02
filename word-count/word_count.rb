@@ -4,14 +4,14 @@ class Phrase
   end
 
   def word_count
-    parsed_data = parse_string
-
-    parsed_data.uniq.to_h { |key| [key, parsed_data.count(key)] }
+    parse_string.uniq.to_h { |key| [key, parse_string.count(key)] }
   end
 
   private
 
-  attr_reader :string
+  def string
+    @string
+  end
 
   def parse_string
     string.scan(/\A[[:word:]]+|[[:word:]]+'[[:word:]]|[[:word:]]+/)
