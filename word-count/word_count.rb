@@ -1,4 +1,6 @@
 class Phrase
+  REGEXP_PATTERN = /\b[[[:word:]]']+\b/
+
   def initialize(string)
     @string = string.downcase
   end
@@ -9,11 +11,9 @@ class Phrase
 
   private
 
-  def string
-    @string
-  end
+  attr_reader :string
 
   def parse_string
-    string.scan(/\A[[:word:]]+|[[:word:]]+'[[:word:]]|[[:word:]]+/)
+    @parse_string ||= string.scan(REGEXP_PATTERN)
   end
 end
