@@ -1,27 +1,25 @@
 class Anagram
-  def initialize(word_example)
-    @word_example = word_example.downcase
+  def initialize(inputted_word)
+    @inputted_word = inputted_word
   end
 
-  def match(words_list)
-    output_array = []
-
-    unless valid?(words_list)
-      parsed_word = word_example.chars.sort
-
-      words_list.each do |word|
-        output_array.push(word) if word.downcase.chars.sort == parsed_word
-      end
-    end
-
-    output_array
+  def match(words)
+    full_equality?(words) ? [] : match_anagram(words)
   end
 
   private
 
-  attr_reader :word_example
+  attr_reader :inputted_word
 
-  def valid?(word_list)
-    word_list.all? { |word| word.downcase == word_example }
+  def full_equality?(words)
+    words.all? { |word| word.downcase == inputted_word.downcase }
+  end
+
+  def letters(word)
+    word.downcase.chars.sort
+  end
+
+  def match_anagram(words)
+    words.select { |word| letters(word) == letters(inputted_word) }
   end
 end
