@@ -1,9 +1,7 @@
 class Pangram
-  LAT_ALPHABET = ('a'..'z').to_a
+  ALPHABET = %w(a b c d e f g h i j k l m n o p q r s t u v w x y z)
 
   def self.pangram?(sentence)
-    sentence = sentence.scan(/[[:alpha:]]/).map(&:downcase)
-
-    LAT_ALPHABET.all? { |char| sentence.include?(char) }
+    (ALPHABET - sentence.downcase.scan(/[[:alpha:]]/).uniq).empty?
   end
 end
