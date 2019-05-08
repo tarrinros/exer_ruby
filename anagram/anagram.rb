@@ -1,18 +1,18 @@
 class Anagram
-  def initialize(inputted_word)
-    @inputted_word = inputted_word
+  def initialize(word)
+    @word = word
   end
 
   def match(words)
-    full_equality?(words) ? [] : match_anagram(words)
+    equivalent?(words) ? [] : match_anagram(words)
   end
 
   private
 
-  attr_reader :inputted_word
+  attr_reader :word
 
-  def full_equality?(words)
-    words.all? { |word| word.downcase == inputted_word.downcase }
+  def equivalent?(words)
+    words.all? { |w| w.downcase == word.downcase }
   end
 
   def letters(word)
@@ -20,6 +20,6 @@ class Anagram
   end
 
   def match_anagram(words)
-    words.select { |word| letters(word) == letters(inputted_word) }
+    words.select { |w| letters(w) == letters(word) }
   end
 end
