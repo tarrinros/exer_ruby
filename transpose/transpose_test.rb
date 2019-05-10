@@ -31,7 +31,7 @@ class TransposeTest < Minitest::Test
   end
 
   def test_two_characters_in_a_column
-    skip
+    # skip
     input = <<~INPUT.strip
       A
       1

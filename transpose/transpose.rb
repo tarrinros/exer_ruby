@@ -1,12 +1,14 @@
 class Transpose
   def self.transpose(input)
-    self.make_columns(input)
+    <<~EXPECTED
+      #{self.make_columns(input).join}
+    EXPECTED
   end
 
   private
 
   def self.make_rows(input)
-    input.each_line.map { |row| row.chars }
+    input.chars
   end
 
   def self.make_columns(input)
