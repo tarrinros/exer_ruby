@@ -45,7 +45,7 @@ class TransposeTest < Minitest::Test
   end
 
   def test_simple
-    skip
+    # skip
     input = <<~INPUT.strip
       ABC
       123
@@ -61,7 +61,7 @@ class TransposeTest < Minitest::Test
   end
 
   def test_single_line
-    skip
+    # skip
     input = <<~INPUT.strip
       Single line.
     INPUT
@@ -85,7 +85,7 @@ class TransposeTest < Minitest::Test
   end
 
   def test_first_line_longer_than_second_line
-    skip
+    # skip
     input = <<~INPUT.strip
       The fourth line.
       The fifth line.
@@ -114,7 +114,7 @@ class TransposeTest < Minitest::Test
   end
 
   def test_second_line_longer_than_first_line
-    skip
+    # skip
     input = <<~INPUT.strip
       The first line.
       The second line.
