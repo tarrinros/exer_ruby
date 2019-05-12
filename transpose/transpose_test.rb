@@ -143,7 +143,7 @@ class TransposeTest < Minitest::Test
   end
 
   def test_mixed_line_length
-    skip
+    # skip
     input = <<~INPUT.strip
       The longest line.
       A long line.
@@ -175,7 +175,7 @@ class TransposeTest < Minitest::Test
   end
 
   def test_square
-    skip
+    # skip
     input = <<~INPUT.strip
       HEART
       EMBER
@@ -196,7 +196,7 @@ class TransposeTest < Minitest::Test
   end
 
   def test_rectangle
-    skip
+    # skip
     input = <<~INPUT.strip
       FRACTURE
       OUTLINED
@@ -219,7 +219,7 @@ class TransposeTest < Minitest::Test
   end
 
   def test_triangle
-    skip
+    # skip
     input = <<~INPUT.strip
       T
       EE
