@@ -1,11 +1,9 @@
 class Raindrops
   FACTORS = {3 => 'Pling', 5 => 'Plang', 7 => 'Plong'}
 
-  def self.convert(num)
-    arr = (1..num).filter { |x| (num % x).zero? }
+  def self.convert(number)
+    result = (1..number).map { |i| FACTORS[i] if number % i == 0 }.join
 
-    str = arr.map { |x| FACTORS[x] }.compact.join
-
-    str.empty? ? arr.last.to_s : str
+    result.empty? ? number.to_s : result
   end
 end
