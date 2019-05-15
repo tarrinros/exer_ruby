@@ -6,8 +6,10 @@ class Raindrops
   }
 
   def self.convert(number)
-    result = RULES.map { |key, value| value if number % key == 0 }.join
+    RULES.each_with_object(results = '') do |(factor, sound)|
+      results << sound if (number % factor).zero?
+    end
 
-    result.empty? ? number.to_s : result
+    results.empty? ? number.to_s : results
   end
 end
