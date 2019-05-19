@@ -1,17 +1,21 @@
 class Grains
   def self.square(i)
-    grain = 1
-
     raise ArgumentError.new unless (1..64).cover?(i)
 
-    1.upto(i - 1) do
-      grain *= 2
-    end
-    grain
+    self.count_grains(i).last
   end
 
   def self.total
-    total = []
-    total.push(self.square(64))
+    self.count_grains(64).sum
+  end
+
+  def self.count_grains(i)
+    arr = [1]
+    grain = 1
+
+    1.upto(i - 1) do
+      arr.push(grain *= 2)
+    end
+    arr
   end
 end
