@@ -1,7 +1,7 @@
 class Isogram
-  def self.isogram?(string)
-    chars = string.downcase.scan(/[[:alpha:]]/)
+  def self.isogram?(words)
+    letters = words.downcase.scan(/[[:alpha:]]/)
 
-    chars.uniq.size == chars.size
+    letters.uniq.size == letters.size
   end
 end
