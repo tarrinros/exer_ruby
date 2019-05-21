@@ -45,13 +45,6 @@ class GrainsTest < Minitest::Test
     end
   end
 
-  def test_square_0_raises_an_custom_exception
-    # skip
-    assert_raises(BoardLocationError) do
-      Grains.square(0)
-    end
-  end
-
   def test_negative_square_raises_an_exception
     # skip
     assert_raises(ArgumentError) do

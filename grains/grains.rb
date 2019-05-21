@@ -1,13 +1,9 @@
 class Grains
-  CHESS_BOARD = 64
-  GRAIN = 1
+  CHESS_BOARD = 64.freeze
+  GRAIN = 1.freeze
 
   def self.square(location)
-    begin
-      self.validate_location(location)
-    rescue BoardLocationError => e
-      e.message # => "a message"
-    end
+    self.validate_location(location)
 
     grains = GRAIN
 
@@ -21,12 +17,12 @@ class Grains
   end
 
   def self.validate_location(location)
-    unless (1..CHESS_BOARD).cover?(location)
-      raise BoardLocationError, "Location given is not on the board"
-    end
+    raise BoardLocationError unless (1..CHESS_BOARD).cover?(location)
   end
 end
 
-class BoardLocationError < ArgumentError; end
-
-puts Grains.square(65)
+class BoardLocationError < ArgumentError
+  def message
+    "Location given is not on the board"
+  end
+end
