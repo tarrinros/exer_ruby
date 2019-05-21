@@ -1,21 +1,32 @@
 class Grains
-  def self.square(i)
-    raise ArgumentError.new unless (1..64).cover?(i)
+  CHESS_BOARD = 64
+  GRAIN = 1
 
-    self.count_grains(i).last
+  def self.square(location)
+    begin
+      self.validate_location(location)
+    rescue BoardLocationError => e
+      e.message # => "a message"
+    end
+
+    grains = GRAIN
+
+    (location - GRAIN).times { grains *= 2 }
+
+    grains
   end
 
   def self.total
-    self.count_grains(64).sum
+    (2 ** CHESS_BOARD) - 1
   end
 
-  def self.count_grains(i)
-    arr = [1]
-    grain = 1
-
-    1.upto(i - 1) do
-      arr.push(grain *= 2)
+  def self.validate_location(location)
+    unless (1..CHESS_BOARD).cover?(location)
+      raise BoardLocationError, "Location given is not on the board"
     end
-    arr
   end
 end
+
+class BoardLocationError < ArgumentError; end
+
+puts Grains.square(65)
