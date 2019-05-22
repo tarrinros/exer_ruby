@@ -1,23 +1,18 @@
 class Grains
-  CHESS_BOARD = 64.freeze
-  GRAIN = 1.freeze
+  CHESS_BOARD = (1..64)
 
   def self.square(location)
     self.validate_location(location)
 
-    grains = GRAIN
-
-    (location - GRAIN).times { grains *= 2 }
-
-    grains
+    (2 ** location) / 2
   end
 
   def self.total
-    (2 ** CHESS_BOARD) - 1
+    (2 ** CHESS_BOARD.last) - 1
   end
 
   def self.validate_location(location)
-    raise BoardLocationError unless (1..CHESS_BOARD).cover?(location)
+    raise BoardLocationError unless CHESS_BOARD.cover?(location)
   end
 end
 
