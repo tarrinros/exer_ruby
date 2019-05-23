@@ -2,11 +2,11 @@ class Grains
   CHESS_BOARD = (1..64)
 
   def self.square(location)
-    new(location).count_grains_at_location
+    new(location).count_grains_on_location
   end
 
   def self.total
-    new(CHESS_BOARD.last).summarize_grains
+    new(CHESS_BOARD.last).count_grains_total
   end
 
   def initialize(location)
@@ -15,11 +15,11 @@ class Grains
     @location = location
   end
 
-  def count_grains_at_location
+  def count_grains_on_location
     (2 ** location) / 2
   end
 
-  def summarize_grains
+  def count_grains_total
     (2 ** location) - 1
   end
 

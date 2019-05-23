@@ -26,14 +26,14 @@ class Scrabble
     "X": 8,
     "Q": 10,
     "Z": 10,
-  }
+  }.freeze
 
   def initialize(phrase)
-    @phrase = phrase
+    @phrase = phrase.downcase
   end
 
   def score
-
+    phrase.scan(/[[:alpha:]]/).map(&:to_sym)
   end
 
   private
