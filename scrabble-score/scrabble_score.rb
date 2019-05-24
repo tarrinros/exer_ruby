@@ -20,14 +20,14 @@ class Scrabble
   end
 
   def initialize(word)
-    @word = word.to_s.upcase.scan(/[[:alpha:]]/)
+    @letters = word.to_s.upcase.scan(/[[:alpha:]]/)
   end
 
   def score
-    word.sum(&LETTERS_RATING)
+    @letters.sum(&LETTERS_RATING)
   end
 
   private
 
-  attr_reader :word
+  attr_reader :letters
 end
