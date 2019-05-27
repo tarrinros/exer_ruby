@@ -8,19 +8,8 @@ class Luhn
   end
 
   def valid?
-    if only_digits?
-      digits = string_parse
-      if digits.length > 1
-        digits.map.with_index do |x, i|
-          if i.even?
-            x
-          else
-            b = x * 2
-            b -= 9 if b > 9
-            b
-          end
-        end.sum % 10 == 0
-      end
+    if only_digits? && size_valid?
+      sum_valid?
     end
   end
 
@@ -32,9 +21,27 @@ class Luhn
     string.match(/\D/).nil?
   end
 
-  def string_parse
-    string.chars.map(&:to_i).reverse
+  def size_valid?
+    string.size > 1
   end
 
-  def sum_valid?; end
+  def array_of_digits
+    string.to_i.digits
+  end
+
+  def luhn_sum
+    array_of_digits.map.with_index do |number, i|
+      if i.even?
+        number
+      else
+        multiplied_number = number * 2
+        multiplied_number -= 9 if multiplied_number > 9
+        multiplied_number
+      end
+    end.sum
+  end
+
+  def sum_valid?
+    luhn_sum % 10 == 0
+  end
 end
