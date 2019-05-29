@@ -1,47 +1,43 @@
 class Luhn
-  def self.valid?(string)
-    new(string).valid?
+  REGEXP_PATTERN = /\D/
+
+  def self.valid?(numbers)
+    new(numbers).valid?
   end
 
-  def initialize(string)
-    @string = string.delete(" ")
+  def initialize(numbers)
+    @numbers = numbers.delete(" ")
   end
 
   def valid?
-    if only_digits? && size_valid?
-      sum_valid?
-    end
+    sum_valid? if only_digits? && size_valid?
   end
 
   private
 
-  attr_reader :string
+  attr_reader :numbers
 
   def only_digits?
-    string.match(/\D/).nil?
+    numbers.match(REGEXP_PATTERN).nil?
   end
 
   def size_valid?
-    string.size > 1
+    numbers.size > 1
   end
 
-  def array_of_digits
-    string.to_i.digits
+  def digits_collection
+    numbers.to_i.digits
   end
 
   def luhn_sum
-    array_of_digits.map.with_index do |number, i|
-      if i.even?
-        number
-      else
-        multiplied_number = number * 2
-        multiplied_number -= 9 if multiplied_number > 9
-        multiplied_number
-      end
-    end.sum
+    digits_collection.each_slice(2).sum { |even, odd| even + xform(odd.to_i * 2) }
   end
 
   def sum_valid?
     luhn_sum % 10 == 0
+  end
+
+  def xform(odd)
+    odd > 9 ? odd - 9 : odd
   end
 end
