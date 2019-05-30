@@ -10,7 +10,9 @@ class Luhn
   end
 
   def valid?
-    sum_valid? if only_digits? && size_valid?
+    return false unless only_digits? && size_valid?
+
+    check_sum.modulo(10).zero?
   end
 
   private
@@ -29,15 +31,15 @@ class Luhn
     numbers.to_i.digits
   end
 
-  def luhn_sum
-    digits_collection.each_slice(2).sum { |even, odd| even + xform(odd.to_i * 2) }
-  end
-
-  def sum_valid?
-    luhn_sum % 10 == 0
+  def check_sum
+    digits_collection.each_slice(2).sum { |even, odd| even + xform(double(odd.to_i)) }
   end
 
   def xform(odd)
     odd > 9 ? odd - 9 : odd
+  end
+
+  def double(odd)
+    odd * 2
   end
 end
