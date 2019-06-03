@@ -1,6 +1,4 @@
 class Luhn
-  REGEXP_PATTERN = /\D/
-
   def self.valid?(numbers)
     new(numbers).valid?
   end
@@ -20,7 +18,7 @@ class Luhn
   attr_reader :numbers
 
   def only_digits?
-    numbers.match(REGEXP_PATTERN).nil?
+    numbers.match(/\D/).nil?
   end
 
   def size_valid?
