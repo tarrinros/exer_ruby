@@ -1,25 +1,32 @@
-require 'time'
+class Clock
+  MIN_IN_HOUR = 60
+  MIN_IN_DAY = 1440
 
-Clock = Struct.new(:hour, :minute) do
+  attr_reader :time_in_minutes
+
   def initialize(hour: 0, minute: 0)
-    super(hour, minute)
+    @time_in_minutes = count_time(hour, minute)
+  end
+
+  def +(clock)
+    Clock.new(minute: time_in_minutes + clock.time_in_minutes)
+  end
+
+  def -(clock)
+    Clock.new(minute: time_in_minutes - clock.time_in_minutes)
+  end
+
+  def ==(clock)
+    time_in_minutes == clock.time_in_minutes
   end
 
   def to_s
-   Time.parse("#{convert_hour}:#{convert_minute}").strftime("%H:%M")
+    '%02d:%02d' % time_in_minutes.divmod(MIN_IN_HOUR)
   end
 
   private
 
-  def convert_hour
-    (hour % 24 + m_to_h) % 24
-  end
-
-  def convert_minute
-    minute % 60
-  end
-
-  def m_to_h
-    (((minute - (minute % 60)) / 60) % 24)
+  def count_time(hour, minute)
+    (hour * MIN_IN_HOUR + minute) % MIN_IN_DAY
   end
 end
